@@ -1,6 +1,6 @@
 # FEUP-IART 2017/2018 
 
-Class 2MIEIC04 - Group B2_3
+Class 3MIEIC01/3MIEIC05 - Group B2_3
 
 Element | College e-mail
 --------|----------------
