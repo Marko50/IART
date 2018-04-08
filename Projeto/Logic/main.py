@@ -22,12 +22,25 @@
 # Ou podem ser simplesmente utilizadas para efectuar uma análise comparativa do nível de desempenho de cada metodologia.
 #
 # É também valorizada a modelização realista do problema.
+#-Representação do tema como problema de otimização: estados, função de cruzamento/mutação,
+# função de vizinhança, função de avaliação, critérios de paragem.
+# Algoritmos de otimização a aplicar (ilustrados para o caso concreto).
+
+
+import random
 
 from deap import base,creator,tools
-creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+
+
+
 
 
 def main():
     if __name__ == '__main__':
         main()
+
+    creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+    creator.create("Dinners", list, fitness=creator.FitnessMax)
+
+    IND_SIZE = 10
 
