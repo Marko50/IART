@@ -3,6 +3,9 @@ class Table:
         self.size = size
         self.id = id
 
+    def __repr__(self):
+        return str(self.id) + " " + str(self.size)
+
     def setPeople(self, people):
         if(len(people) != self.size):
             raise Exception("Incorrect size for table " + self.id)

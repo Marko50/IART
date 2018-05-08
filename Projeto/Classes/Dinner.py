@@ -7,5 +7,4 @@ class Dinner:
         afinity = 0
         for x in range(0, len(self.tables)):
             afinity+= self.tables[x].getAfinity()
-
         return afinity
