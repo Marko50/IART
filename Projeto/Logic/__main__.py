@@ -31,25 +31,30 @@
 
 from deap import base,creator,tools
 import sys
+from Logic.genetic import *
 sys.path.append("..")
 from FileParser import ParseFile
 
-creator.create("FitnessMax", base.Fitness, weights=(1.0,))
-creator.create("Dinners", list, fitness=creator.FitnessMax)
 
-
-filename = '../input'
+filename = 'input'
 tuple = ParseFile.parseFile(filename)
 people = tuple[0]
 tables = tuple[1]
 
-for x in range(0, len(people)):
-   person = people[x]
-   print(person)
-#
-for y in range(0, len(tables)):
-   print(tables[y])
+IND_SIZE = 10
+creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+creator.create("Dinners", list, fitness=creator.FitnessMax)
+
+toolbox = base.Toolbox()
+toolbox.register("attr_dinner", generateDinner, tables, people)
+toolbox.register("individual", tools.initRepeat, creator.Dinners,toolbox.attr_dinner, n = IND_SIZE)
 
 
-# IND_SIZE = 10
+t = toolbox.individual()
+
+
+
+
+
+
 

@@ -19,7 +19,7 @@ def parseFile(filename):
     tablesSize = int(lines[1])
     length = len(lines)
     people = [0] * (length - 2)
-    tables = [numberTables]
+    tables = [0]*(numberTables)
     for x in range(2, length):
         splitedSemiColumn = lines[x].split(':')
         name = splitedSemiColumn[0]

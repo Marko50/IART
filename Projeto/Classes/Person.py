@@ -26,4 +26,4 @@ class Person:
         return afinity
 
     def __repr__(self):
-        return str(self.id) + " " + self.name+ " " + str(self.age)+ " " + str(self.group)+ " " + self.hobie + " "+ self.family+ " "  + self.job + " " + self.interest
+        return str(self.id) + " " + self.name + " " + str(self.age)+ " " + str(self.group)+ " " + self.hobie + " "+ self.family+ " "  + self.job + " " + self.interest
