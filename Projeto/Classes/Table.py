@@ -1,5 +1,5 @@
 class Table:
-    def __init__(self, id, size):
+    def __init__(self, id = -1, size = -1):
         self.size = size
         self.id = id
         self.people = list()
@@ -13,7 +13,7 @@ class Table:
             for x in range(0, self.size):
                 st += self.people[x].__repr__() + "\n"
 
-        return str(self.id) + " " + str(self.size) + "\n" + st
+        return "TableID: " + str(self.id) + " SIze: " + str(self.size) + "\n" + st +"\n"
 
     def setPeople(self, people):
         if(len(people) > self.size):
