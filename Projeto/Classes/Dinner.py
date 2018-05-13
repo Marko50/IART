@@ -1,5 +1,6 @@
 from deap import creator
 from random import choice
+import copy
 
 class Dinner(object):
     id = 0
@@ -11,7 +12,7 @@ class Dinner(object):
         self.calcAfinity()
         self.probabilityMin = 0
         self.probabilityMax = 0
-
+        self.probability = 0
 
     def __cmp__(self, other):
         return self.totalAfinity() > other.totalAfinity()
@@ -20,13 +21,15 @@ class Dinner(object):
         return self.afinity
 
     def calcAfinity(self):
+        self.afinity = 0
         for x in range(0, len(self.tables)):
             self.afinity += self.tables[x].getAfinity()
 
     def setProb(self,total,acum):
         self.probabilityMin = acum
         inc = self.totalAfinity()/total
-        self.probabilityMax = inc + acum
+        self.probability = inc
+        self.probabilityMax = (inc + acum)
         return inc
 
     def __repr__(self):
@@ -44,25 +47,42 @@ class Dinner(object):
     def __setitem__(self, key, value):
         self.tables[key] = value
 
-    def subs(self, firstElement, secondElement):
+    def subs(self, tableIndex, elementIndex, subs):
+        ti = 0
+        ei = 0
         for x in range(0, len(self.tables)):
             for y in range(0, len(self.tables[x].people)):
-                if(self.tables[x].peole[y] == firstElement):
-                    self.tables[x].peole[y] = secondElement
-                elif(self.tables[x].peole[y] == secondElement):
-                    self.tables[x].peole[y] = firstElement
+                if(self.tables[x].people[y].id == subs.id):
+                    ti = x
+                    ei = y
+
+
+        original = copy.deepcopy(self.tables[tableIndex].people[elementIndex])
+        self.tables[tableIndex].people[elementIndex] = subs
+        self.tables[ti].people[ei] = original
+        self.calcAfinity()
+        return
 
     def mate(self, other):
-        print("Mating: " ,str(self.id))
-        firstTable = choice(self.tables)
-        print("First Table: " ,firstTable)
-        secondTable = choice(self.tables)
-        print("Second Table: " ,secondTable)
-        firstElement = choice(firstTable.people)
-        print("First Element: " ,firstElement)
-        secondElement = choice(secondTable.people)
-        print("Second Element: ",secondElement)
-        while(firstElement == secondElement):
-            secondElement = choice(secondTable)
-        self.subs(firstElement,secondElement)
-        other.subs(firstElement,secondElement)
+        firstTableChoiceIndex = choice(range(0,len(self.tables)))
+        secondTableChoiceIndex = choice(range(0,len(other.tables)))
+
+        firstPersonChoiceIndex = choice(range(0,len(self.tables[firstTableChoiceIndex].people)))
+        secondPersonChoiceIndex = choice(range(0,len(other.tables[secondTableChoiceIndex].people)))
+
+        ownSubs = self.tables[firstTableChoiceIndex].people[firstPersonChoiceIndex]
+        otherSubs = other.tables[secondTableChoiceIndex].people[secondPersonChoiceIndex]
+
+        self.subs(firstTableChoiceIndex,firstPersonChoiceIndex,otherSubs)
+        other.subs(secondTableChoiceIndex,secondPersonChoiceIndex,ownSubs)
+
+    def mutate(self):
+        firstTableChoiceIndex = choice(range(0, len(self.tables)))
+        secondTableChoiceIndex = choice(range(0, len(self.tables)))
+
+        firstPersonChoiceIndex = choice(range(0, len(self.tables[firstTableChoiceIndex].people)))
+        secondPersonChoiceIndex = choice(range(0, len(self.tables[secondTableChoiceIndex].people)))
+
+        ownSubs = self.tables[firstTableChoiceIndex].people[firstPersonChoiceIndex]
+        self.subs(secondTableChoiceIndex,secondPersonChoiceIndex, ownSubs)
+

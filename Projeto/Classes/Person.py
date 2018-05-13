@@ -13,17 +13,17 @@ class Person:
         afinity = 0
         if(self.id != -1 and person.id != -1):
             if (person.group == self.group):
-                afinity += 0.5
+                afinity += 1.0
             if (person.interest == self.interest):
-                afinity += 0.1
+                afinity += 0.5
             if (person.family == self.family):
-                afinity += 0.1
+                afinity += 0.5
             if (person.age == self.age):
-                afinity += 0.1
+                afinity += 0.5
             if (person.job == self.job):
-                afinity += 0.1
+                afinity += 0.5
             if (person.hobie == self.hobie):
-                afinity += 0.1
+                afinity += 0.5
         return afinity
 
     def __cmp__(self, other):

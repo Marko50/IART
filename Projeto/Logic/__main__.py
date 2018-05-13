@@ -43,7 +43,7 @@ tables = tuple[1]
 
 
 
-IND_SIZE = 2
+IND_SIZE = 50
 
 creator.create("FitMax", base.Fitness, weights=(1.0,))
 
@@ -52,15 +52,27 @@ toolbox.register("individual", generateDinner, tables, people)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual, n = IND_SIZE)
 
 toolbox.register("mate", mate)
-# toolbox.register("mutate", tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+toolbox.register("mutate", mutate)
 toolbox.register("select", select)
 
 
 
 pop = toolbox.population()
-selected = toolbox.select(pop)
-toolbox.mate(selected)
-print(selected)
+counter = 0
+old_d = 0
+response = 0
+while (counter < 1000):
+    selected = toolbox.select(pop)
+    toolbox.mate(selected)
+    toolbox.mutate(selected)
+    pop = selected
+    d = max(pop)
+    counter = counter +1
+    if(d.totalAfinity() > old_d):
+        response = d
+        old_d = d.totalAfinity()
+
+print(response)
 
 
 

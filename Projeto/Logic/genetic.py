@@ -31,40 +31,25 @@ def generateDinner(tables,people):
 def mate(selectedPopulation):
     cruzProb = 0.5
     l = len(selectedPopulation)
-    print("LENGTH: ", l)
-    newPop = [0]*(l)
-    counter = 0
     selectedForMating = list()
     for x in range(0, l):
-        print(selectedPopulation[x])
-        if(selectedPopulation[x].probabilityMax > cruzProb):
-            print("Selected for mating ")
+        r = random()
+        if (r < cruzProb):
             selectedForMating.append(selectedPopulation[x])
-        else:
-            print("Not selected for mating ")
-            newPop[counter] = 0
-            counter = counter + 1
 
-    lengthMating = len(selectedForMating)
-    for y in range(0, lengthMating,2):
-        if(y == lengthMating-1):
-            print("IMpar")
-            indiv = selectedForMating[y].mate(selectedForMating[y])
-            newPop[counter] = indiv
+    l2 = len(selectedForMating)
+    for y in range(0, l2,2):
+        if(y == l2-1):
+            selectedPopulation[y].mate(selectedPopulation[y])
         else:
-            print("Mating")
-            indiv = selectedForMating[y].mate(selectedForMating[y + 1])
-            newPop[counter] = indiv
-        counter = counter + 1
-
-    return newPop
+            selectedPopulation[y].mate(selectedPopulation[y + 1])
 
 def select(population):
     total = 0
     l = len(population)
     selectedPop = [0] * (l)
     for x in range(0, l):
-       total += population[x].totalAfinity()
+        total += population[x].totalAfinity()
     acum = 0
     for y in range (0, l):
         inc = population[y].setProb(total,acum)
@@ -72,8 +57,20 @@ def select(population):
 
     for a in range(0, l):
         r = random()
+
         for z in range(0, l):
-            if (population[z].probabilityMin <= r and population[z].probabilityMax >= r):
-                selectedPop[a] = population[z]
+            if (population[z].probabilityMin < r and population[z].probabilityMax >= r):
+                selectedPop[a] = copy.copy(population[z])
                 break
+
+
     return selectedPop
+
+
+def mutate(population):
+    probMut = 0.2
+    for x in range(0, len(population)):
+        r = random()
+        if(r < probMut):
+            population[x].mutate()
+
