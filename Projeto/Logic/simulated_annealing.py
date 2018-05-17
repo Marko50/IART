@@ -10,11 +10,12 @@ def simulated_annealing():
     tuple = ParseFile.parseFile(filename)
     people = tuple[0]
     tables = tuple[1]
-    temperature = 1000
+    temperature = 100
     solution = 0
     old_state = 0
+    actual_state = generateDinner(tables, people)
     while(temperature > 0):
-        actual_state = generateDinner(tables, people)
+        actual_state.mutate()
         if(actual_state.totalAfinity() > old_state):
             old_state = actual_state.totalAfinity()
             solution = actual_state

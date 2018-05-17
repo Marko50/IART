@@ -5,3 +5,4 @@ from deap import base,creator
 creator.create("FitMax", base.Fitness, weights=(1.0,))
 
 simulated_annealing()
+#geneticAlgorithm()
