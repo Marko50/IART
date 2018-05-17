@@ -4,5 +4,12 @@ from deap import base,creator
 
 creator.create("FitMax", base.Fitness, weights=(1.0,))
 
-simulated_annealing()
-#geneticAlgorithm()
+print("1. Genetic Algorithm\n2. Simulated Annealing")
+try:
+    r = input("Option: ")
+except ValueError:
+    print("Not a number")
+if(r == 1):
+    simulated_annealing()
+elif(r == 2):
+    geneticAlgorithm()
