@@ -50,7 +50,6 @@ def geneticAlgorithm():
     tables = tuple[1]
     IND_SIZE = 50
 
-    creator.create("FitMax", base.Fitness, weights=(1.0,))
 
     toolbox = base.Toolbox()
     toolbox.register("individual", generateDinner, tables, people)
