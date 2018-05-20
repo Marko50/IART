@@ -10,7 +10,7 @@ def simulated_annealing():
     tuple = ParseFile.parseFile(filename)
     people = tuple[0]
     tables = tuple[1]
-    temperature = 100
+    temperature = 800
     solution = 0
     old_state = 0
     actual_state = generateDinner(tables, people)
