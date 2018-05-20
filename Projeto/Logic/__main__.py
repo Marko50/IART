@@ -10,6 +10,6 @@ try:
 except ValueError:
     print("Not a number")
 if(r == 1):
-    simulated_annealing()
-elif(r == 2):
     geneticAlgorithm()
+elif(r == 2):
+    simulated_annealing()
