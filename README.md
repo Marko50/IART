@@ -38,7 +38,12 @@ Code developed for Artificial Intelligence (IART).
  Representacao do tema como problema de otimizacao: estados, funcao de cruzamento/mutacao,
  funcao de vizinhanca, funcao de avaliacao, criterios de paragem.
  Algoritmos de otimizacao a aplicar (ilustrados para o caso concreto).
+
+## Dependency instructions using pip
+
+``pip install deap``
  
 ## Instruções de como correr:
 
 ``python -m Logic ``
+
