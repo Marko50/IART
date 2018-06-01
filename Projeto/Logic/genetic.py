@@ -30,7 +30,6 @@
 
 from deap import base,tools,creator
 import sys
-from Logic.genetic import *
 sys.path.append("..")
 from FileParser import ParseFile
 
