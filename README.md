@@ -49,11 +49,11 @@ Code developed for Artificial Intelligence (IART).
 
 ## User interface
 
-[x] - Choose the type of algorithm to use 
+- [x] Choose the type of algorithm to use 
 ![alt text](https://github.com/Marko50/FEUP-IART/blob/master/interface2.png)
 
 
-[x] - Result 
+- [x] Result 
 ![alt text](https://github.com/Marko50/FEUP-IART/blob/master/interface1.png)
 
 ## Class Diagram 
